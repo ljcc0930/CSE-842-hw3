@@ -29,9 +29,9 @@ Here's a summary of the loss values in a Markdown table:
 During this implementation, I learned how to fine-tune a pre-trained DistilBERT model on a custom dataset (Yelp reviews) using the Hugging Face Transformers library. The code demonstrates how to load a dataset, preprocess it, set up training arguments, and train and evaluate the model using the Trainer class. It also shows how to use a custom tokenizer and apply it to the dataset using the map function.
 
 
-# Problem 2
+## Problem 2
 
-## Instructions
+### Instructions
 1. Install the necessary libraries:
 ```
 pip install numpy pandas scikit-learn nltk gensim allennlp
@@ -55,7 +55,7 @@ I chose the polarity 2.0 dataset for this task because it's a relatively smaller
 I used a Support Vector Machine (SVM) classifier with different word embeddings, including Word2Vec and GloVe. SVM is a popular choice for text classification tasks because it can efficiently handle high-dimensional input data and is less prone to overfitting.
 
 ### d. The features you tested.
-I tested various word embeddings as features, such as Word2Vec, GloVe, and ELMo. These embeddings help capture semantic information in the text and are widely used in NLP tasks. The goal was to understand the impact of different embeddings on the performance of the SVM classifier.
+I tested various word embeddings as features, such as Word2Vec and GloVe. These embeddings help capture semantic information in the text and are widely used in NLP tasks. The goal was to understand the impact of different embeddings on the performance of the SVM classifier.
 
 ### e. Link to the most recent, best-performing BERT (or related) model for this task.
 [BERT for Sentiment Analysis](https://arxiv.org/pdf/1810.04805.pdf). The table summary of their results is as follows:
@@ -69,15 +69,15 @@ I tested various word embeddings as features, such as Word2Vec, GloVe, and ELMo.
 ### f. Summary table of your results (precision, recall, F1, accuracy).
 | Embedding   | Best Parameters       | Accuracy | Precision | Recall | F1-score |
 |-------------|-----------------------|---------------------|-----------|--------|----------|
-| Word2Vec    | C=10, linear kernel | **0.8550**              | 0.8580    | 0.8612 | 0.8598   |
-| GloVe-300   | C=10, linear kernel | 0.8225              |	0.8232 |	0.8223 |	0.8220   |
-| GloVe-50    | C=1, linear kernel | 0.7475              | 0.7490    | 0.7440 | 0.7495   |
+| Word2Vec    | C=10, linear kernel | **0.8550**              | 0.86    | 0.85 | 0.86   |
+| GloVe-300   | C=10, linear kernel | 0.8225              |	0.82 |	0.82 |	0.82   |
+| GloVe-50    | C=1, linear kernel | 0.7475              | 0.75    | 0.74 | 0.75   |
 
 
 ### g. Brief discussion of:
 **i. where you think your modeling approach and features worked well**
 
-The use of word embeddings as features captures semantic information about the words in the movie reviews, which is essential for sentiment analysis. SVM is a powerful classifier and can handle high-dimensional data, which is suitable for this task.
+The use of word embeddings as features captures semantic information about the words in the movie reviews, which is essential for sentiment analysis. SVM is a powerful classifier and can handle high-dimensional data, which is suitable for this task, and I use `GridSearchCV` for my parameters to get the best performance over cross validations to further improve my method.
 
 **ii. where you might have been able to improve**
 
@@ -90,3 +90,24 @@ It is likely that the provided model did not outperform the BERT model because B
 The provided model, on the other hand, relies on simpler word embeddings and a Support Vector Machine classifier. Although the embeddings capture some semantic information, they may not be as powerful as BERT's contextualized representations. Moreover, the SVM classifier, although effective in many situations, may not be able to capture complex patterns and relationships as effectively as the deep learning architecture used in BERT.
 
 To potentially close the performance gap between the provided model and the BERT model, one could experiment with more advanced word embeddings, such as contextualized embeddings from models like ELMo or BERT itself. Additionally, experimenting with other classification models or ensemble methods could lead to performance improvements. Lastly, incorporating more advanced feature engineering techniques, such as n-grams, part-of-speech tags, or other linguistic features, may enhance the model's ability to capture the sentiment in the text.
+
+### h. Optional for 5 bonus points: Add BERT contextual embeddings into your features
+| Embedding   | Best Parameters       | Accuracy | Precision | Recall | F1-score |
+|-------------|-----------------------|---------------------|-----------|--------|----------|
+| Bert    | C=5, rbf kernel | 0.8225              | 0.82    | 0.82 | 0.82   |
+```
+python SVC_polarity_bertembed.py
+```
+
+### h. Optional for 5 bonus points: Add BERT contextual embeddings into your features
+Trained with BERT embedding. Accuracy: 0.4875
+```
+python bilstm.py
+```
+
+## Problem 3
+
+The finetuned performance is summarized in Problem 2e.
+```
+python finetune_bert_polarity.py
+```

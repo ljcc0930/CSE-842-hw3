@@ -37,7 +37,7 @@ import numpy as np
 
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report, accuracy_score
 
 import nltk
 from nltk.tokenize import word_tokenize
@@ -50,6 +50,16 @@ SEED = 1
 random.seed(SEED)
 np.random.seed(SEED)
 
+def load_glove_model(file):
+    model = {}
+    with open(file, "r", encoding="utf-8") as f:
+        for line in f:
+            values = line.split()
+            word = values[0]
+            vector = np.asarray(values[1:], dtype="float32")
+            model[word] = vector
+    return model
+
 def load_data_from_directory(data_dir):
     data = []
     for label, sentiment in enumerate(["pos", "neg"]):
@@ -60,15 +70,6 @@ def load_data_from_directory(data_dir):
                 data.append({"text": text, "label": label})
     return pd.DataFrame(data)
 
-def load_glove_model(file):
-    model = {}
-    with open(file, "r", encoding="utf-8") as f:
-        for line in f:
-            values = line.split()
-            word = values[0]
-            vector = np.asarray(values[1:], dtype="float32")
-            model[word] = vector
-    return model
 
 data_dir = "/storage/users/ljcc0930/workspace/CSE-842-hw/data/txt_sentoken"
 
@@ -151,4 +152,8 @@ for name, model in embedding_methods.items():
     val_accuracy = accuracy_score(y_val, y_val_pred)
 
     print(f"Validation accuracy: {val_accuracy:.4f}\n")
+
+    report = classification_report(y_val, y_val_pred, target_names=["pos", "neg"])
+    print("\nClassification Report:")
+    print(report)
 
