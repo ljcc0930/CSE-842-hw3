@@ -108,7 +108,7 @@ stopwords = set(stopwords.words("english"))
 word2vec_model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin.gz", binary=True)
 
 # Load GloVe model
-glove_model = load_glove_model("glove.6B.50d.txt")
+# glove_model = load_glove_model("glove.6B.50d.txt")
 
 # Load ELMo model
 # options_file = "https://allennlp.s3.amazonaws.com/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_options.json"
@@ -116,8 +116,8 @@ glove_model = load_glove_model("glove.6B.50d.txt")
 # elmo = Elmo(options_file, weight_file, 1, dropout=0, requires_grad=False).cuda()
 
 embedding_methods = {
-    # "Word2Vec": word2vec_model,
-    # "GloVe": glove_model,
+    "Word2Vec": word2vec_model,
+    "GloVe": glove_model,
     # "ELMo": elmo
 }
 
