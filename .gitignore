@@ -1,0 +1,5 @@
+wandb
+logs
+*.txt
+*.zip
+*.bin.gz
