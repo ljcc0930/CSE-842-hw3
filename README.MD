@@ -67,6 +67,7 @@ I tested various word embeddings as features, such as Word2Vec and GloVe. These 
 |BERT(fine-tuned by me)| 0.8675 |
 
 ### f. Summary table of your results (precision, recall, F1, accuracy).
+
 | Embedding   | Best Parameters       | Accuracy | Precision | Recall | F1-score |
 |-------------|-----------------------|---------------------|-----------|--------|----------|
 | Word2Vec    | C=10, linear kernel | **0.8550**              | 0.86    | 0.85 | 0.86   |
