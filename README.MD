@@ -1,5 +1,8 @@
 # CSE-842-hw3
 ## Problem 1
+```
+python p1.py
+```
 ### a. Package used
 
 PyTorch (through the Hugging Face Transformers library)
