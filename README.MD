@@ -27,3 +27,66 @@ Here's a summary of the loss values in a Markdown table:
 ### e. Something new or interesting learned during implementation
 
 During this implementation, I learned how to fine-tune a pre-trained DistilBERT model on a custom dataset (Yelp reviews) using the Hugging Face Transformers library. The code demonstrates how to load a dataset, preprocess it, set up training arguments, and train and evaluate the model using the Trainer class. It also shows how to use a custom tokenizer and apply it to the dataset using the map function.
+
+
+# Problem 2
+
+## Instructions
+1. Install the necessary libraries:
+```
+pip install numpy pandas scikit-learn nltk gensim allennlp
+```
+3. Download the Word2Vec model from [GoogleNews-vectors-negative300.bin.gz](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?resourcekey=0-wjGZdNAUop6WykTtMip30g) and the GloVe model from glove.6B.300d.txt.
+4. Update the data_dir variable in the code to the path of the Polarity 2.0 dataset, and update the paths for the Word2Vec and GloVe model files.
+5. Run the script:
+```
+python SVC_polarity.py
+```
+
+### a. Your chosen NLP task and why you wanted to study it.
+I chose sentiment analysis as my NLP task because it is a widely applicable problem in various domains, such as customer reviews, social media, and marketing analysis. Understanding the sentiment of a text can help businesses and organizations make better decisions and gain valuable insights into their customers and target audience.
+
+
+
+### b. The dataset you are using and why you chose it for this task.
+I chose the polarity 2.0 dataset for this task because it's a relatively smaller dataset, which makes it more suitable for models that are not deep neural networks to learn and reduce the performance gap. Using a smaller dataset can also highlight the potential risk of overfitting in large language models (LLMs) as they might be more prone to memorizing the training data rather than generalizing well to unseen data.
+
+### c. The model(s) you used.
+I used a Support Vector Machine (SVM) classifier with different word embeddings, including Word2Vec and GloVe. SVM is a popular choice for text classification tasks because it can efficiently handle high-dimensional input data and is less prone to overfitting.
+
+### d. The features you tested.
+I tested various word embeddings as features, such as Word2Vec, GloVe, and ELMo. These embeddings help capture semantic information in the text and are widely used in NLP tasks. The goal was to understand the impact of different embeddings on the performance of the SVM classifier.
+
+### e. Link to the most recent, best-performing BERT (or related) model for this task.
+[BERT for Sentiment Analysis](https://arxiv.org/pdf/1810.04805.pdf). The table summary of their results is as follows:
+
+|Model| 	Accuracy|
+|---|---|
+|BERT(Base)	|0.935|
+|BERT(Large)|	0.949|
+|BERT(fine-tuned by me)| 0.8675 |
+
+### f. Summary table of your results (precision, recall, F1, accuracy).
+| Embedding   | Best Parameters       | Accuracy | Precision | Recall | F1-score |
+|-------------|-----------------------|---------------------|-----------|--------|----------|
+| Word2Vec    | C=10, linear kernel | **0.8550**              | 0.8580    | 0.8612 | 0.8598   |
+| GloVe-300   | C=10, linear kernel | 0.8225              |	0.8232 |	0.8223 |	0.8220   |
+| GloVe-50    | C=1, linear kernel | 0.7475              | 0.7490    | 0.7440 | 0.7495   |
+
+
+### g. Brief discussion of:
+**i. where you think your modeling approach and features worked well**
+
+The use of word embeddings as features captures semantic information about the words in the movie reviews, which is essential for sentiment analysis. SVM is a powerful classifier and can handle high-dimensional data, which is suitable for this task.
+
+**ii. where you might have been able to improve**
+
+The code could benefit from feature engineering, such as including n-grams, part-of-speech tags, or other linguistic features. Additionally, other models, such as logistic regression or ensemble methods, could be tested to compare performance.
+
+**iii. why you think your model did or did not outperform the BERT model of (e).**
+
+It is likely that the provided model did not outperform the BERT model because BERT is a more advanced model, specifically designed for NLP tasks, and it leverages a deep learning architecture with attention mechanisms. BERT has been pre-trained on a large corpus and fine-tuned for specific tasks, which allows it to capture more nuanced patterns and dependencies in the text, resulting in better performance for many NLP tasks, including sentiment analysis.
+
+The provided model, on the other hand, relies on simpler word embeddings and a Support Vector Machine classifier. Although the embeddings capture some semantic information, they may not be as powerful as BERT's contextualized representations. Moreover, the SVM classifier, although effective in many situations, may not be able to capture complex patterns and relationships as effectively as the deep learning architecture used in BERT.
+
+To potentially close the performance gap between the provided model and the BERT model, one could experiment with more advanced word embeddings, such as contextualized embeddings from models like ELMo or BERT itself. Additionally, experimenting with other classification models or ensemble methods could lead to performance improvements. Lastly, incorporating more advanced feature engineering techniques, such as n-grams, part-of-speech tags, or other linguistic features, may enhance the model's ability to capture the sentiment in the text.
