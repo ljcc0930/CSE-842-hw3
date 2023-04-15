@@ -1,0 +1,18 @@
+Best parameters:  {'C': 10}
+Best cross-validation score:  0.818125
+Validation accuracy: 0.8475
+
+Embedding: Word2Vec
+Best parameters:  {'C': 10, 'kernel': 'linear'}
+Best cross-validation score:  0.8324994788409422
+Validation accuracy: 0.8550
+
+Embedding: GloVe-300
+Best parameters:  {'C': 10, 'kernel': 'linear'}
+Best cross-validation score:  0.8006221116662333
+Validation accuracy: 0.8225
+
+Embedding: GloVe-50
+Best parameters:  {'C': 1, 'kernel': 'linear'}
+Best cross-validation score:  0.7081298470720231
+Validation accuracy: 0.7475
